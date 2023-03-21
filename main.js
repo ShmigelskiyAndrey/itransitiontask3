@@ -3,9 +3,10 @@
 // 3 - шифрую ответ
 // 4 - предлагаю выбрать пользователю 
 // 5 - сравниваю ответы и вывожу победителя
-const secureRandom = require('secure-random');
-const CryptoJS = require("crypto-js")
+const Hmac = require("./Hmac")
 const Key = require("./Key")
+const Rules = require("./Rules")
+const prompt = require('prompt-sync')({sigint: true});
 
 
 let moves = process.argv.slice(2)
@@ -19,20 +20,32 @@ if (4 > process.argv.length) {
 }
 
 
+
+// function hueta(moves){
+//     let variants = `Available moves: \n`
+//     moves.foreach(huis => {variants = variants + huis})
+        
+//     return console.log(variants)
+// }
+
+
 function compchoose(moves) {
-    const computermove = moves[Math.floor(Math.random() * moves.length)];
-
-    let msg = computermove;
-
-
-    
+    const computerMove = moves[Math.floor(Math.random() * moves.length)];
+    let msg = computerMove;
     
     const key = new Key().getKey();
+    const hmac = new Hmac(msg, key).getHmac()
 
-    let hash = CryptoJS.HmacSHA256(msg, key).toString();
-    console.log(hash)
+    console.log(`\nHMAC: ${hmac}`)
 
-    return console.log(computermove)
+    const readyMoves = moves.map((move, index) => {`${index + 1} - ${move}\n`});
+    console.log(moves.map(e => e))
+
+    // let userMove = prompt("Enter your move: ")
+    
+    // const rules = new Rules(moves, userMove).getRules()
+
+    return console.log(readyMoves)
 }
 
 
