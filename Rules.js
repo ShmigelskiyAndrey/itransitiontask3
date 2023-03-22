@@ -1,18 +1,11 @@
-
-
 class Rules {
-    constructor(moves){
-        // this.moves = secureRandom(32, {type: "Uint8Array"});
-        // this.rules = Buffer.from(this.arr).toString('hex');
+  constructor(moves, computerMove, userMove) {
+    this.rules = (moves.lenght - 1) / 2;
+  }
 
-        
-        this.rules = (moves.lenght - 1) / 2;
-        
-    }
-
-    getRules(){
-        return this.rules;
-    }
+  getRules() {
+    return this.rules;
+  }
 }
 
 module.exports = Rules;
