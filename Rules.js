@@ -1,10 +1,55 @@
 class Rules {
-  constructor(moves, computerMove, userMove) {
-    this.rules = (moves.lenght - 1) / 2;
+  constructor(moves) {
+    this.moves = moves;
   }
 
-  getRules() {
-    return this.rules;
+  getSortedArray(firstPlayer) {
+    let sortedmoves = [...this.moves];
+
+    this.movesMidleid = (sortedmoves.length - 1) / 2;
+    while (firstPlayer !== sortedmoves[this.movesMidleid]) {
+      let element = sortedmoves.pop();
+      sortedmoves.unshift(element);
+    }
+    this.sortedmoves = sortedmoves;
+  }
+
+  // getWinner(secondPlayer) {
+  //   let userMoveid = this.sortedmoves.indexOf(secondPlayer);
+
+  //   if (this.movesMidleid === userMoveid) {
+  //     console.log("draw");
+  //   } else if (this.movesMidleid < userMoveid) {
+  //     console.log("computer win");
+  //   } else {
+  //     console.log("you win");
+  //   }
+  // }
+
+  getWinner(second) {
+    let secondId = this.sortedmoves.indexOf(second);
+
+    if (this.movesMidleid === secondId) {
+      return "Draw";
+    } else if (this.movesMidleid < secondId) {
+      return "Win";
+    } else {
+      return "Lose";
+    }
+  }
+
+  printWinner(condition) {
+    if (condition == "Draw") {
+      console.log("draw");
+    }
+
+    if (condition == "Win") {
+      console.log("computer win");
+    }
+
+    if (condition == "Lose") {
+      console.log("you win");
+    }
   }
 }
 
