@@ -6,7 +6,6 @@ class Table {
   getTable(moves) {
     const table = {};
 
-    // создание столбцов
     moves.forEach((element) => {
       const obj = {};
       const rules = new Rules(moves);

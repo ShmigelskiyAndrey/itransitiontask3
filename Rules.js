@@ -14,18 +14,6 @@ class Rules {
     this.sortedmoves = sortedmoves;
   }
 
-  // getWinner(secondPlayer) {
-  //   let userMoveid = this.sortedmoves.indexOf(secondPlayer);
-
-  //   if (this.movesMidleid === userMoveid) {
-  //     console.log("draw");
-  //   } else if (this.movesMidleid < userMoveid) {
-  //     console.log("computer win");
-  //   } else {
-  //     console.log("you win");
-  //   }
-  // }
-
   getWinner(second) {
     let secondId = this.sortedmoves.indexOf(second);
 
